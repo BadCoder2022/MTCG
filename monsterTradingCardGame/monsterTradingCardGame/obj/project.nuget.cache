@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "SlgvEXV8gdyD/S0WxrZ5q/zGA8jT1xNcZBPVUKyTlD4H3woS94s3R1r9m1ToNvfotPS9yep3RNLlFQwCq/Dzuw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\assch\\OneDrive\\Dokumente\\FH\\swen\\MTCG\\monsterTradingCardGame\\monsterTradingCardGame\\monsterTradingCardGame.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\assch\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\assch\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512",
+    "C:\\Users\\assch\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

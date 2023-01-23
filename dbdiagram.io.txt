@@ -1,0 +1,65 @@
+//// -- LEVEL 1
+//// -- Schemas, Tables and References
+
+// Creating tables
+Table gamer {
+  id int
+  name string [unique,pk]
+  coins int
+  token string
+  password string [not NULL]
+  alias string
+  bio string
+  image string
+}
+
+Table stack {
+  id      int [pk]
+  username string
+  cardid guid
+  partOfDeck boolean
+}
+
+Table cpackage{
+  packid  int [pk]
+  cardid0 guid
+  cardid1 guid
+  cardid2 guid
+  cardid3 guid
+  cardid4 guid
+}
+
+Table card{
+  id guid [pk]
+  type integer
+  name  string
+  damage double
+  isMonster boolean
+}
+
+Table score{
+  id integer [pk]
+  gamer string 
+  wins integer
+  losses  integer
+  draws integer
+  Elo integer
+}
+
+Table trades{
+   id guid [pk]
+  card guid
+  wantsMonster  boolean
+  minDamage double
+}
+
+Ref: gamer.name > stack.username  
+Ref: stack.cardid < card.id
+Ref: card.id > cpackage.cardid0
+Ref: card.id > cpackage.cardid1
+Ref: card.id > cpackage.cardid2
+Ref: card.id > cpackage.cardid3
+Ref: card.id > cpackage.cardid4  
+Ref: card.id > trades.card  
+Ref: gamer.name > score.gamer  
+//
