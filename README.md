@@ -17,7 +17,7 @@ I tried to mock the database or the Rest-Server but found out rather fast, how d
 ##Optional Feature
 I decided to implement a feature called “Random Battle” which takes ten random cards from a set of 45 cards. Each card can be drawn more than once. This feature has its own battlelobby and determines a win or a loss a bit differently. The player who took more cards from the opponent is the winner. This battle does not change the ELO, or the scoreboard at all and should be seen as a kind of quick casual matchmaking, between two players. This battle uses the same Battle class, but changes the win conditions a fair bit to make it much less common to get draws. 
 
-I am very fond of the used sql-statement to get 10 random cards, as it is only a single query and I do not need to do 10 single queries:
+I am very fond of the used sql-statement to get 10 random cards, as it is only a single query and I do not need to do 10 single queries to get 10 random cards:
 ```cs
 string cmd = @"(SELECT * FROM randomcard ORDER BY random() limit 1)
                             UNION ALL
