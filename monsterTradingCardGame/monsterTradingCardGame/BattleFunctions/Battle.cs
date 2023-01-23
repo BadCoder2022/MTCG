@@ -21,7 +21,6 @@ namespace monsterTradingCardGame.BattleFunctions
         /// <returns>This method returns a battle log, which can be accessed to return a reply.</returns>
         public static BLog StartBattle(Tuple<User, List<Card>> player1, Tuple<User, List<Card>> player2)
         {
-            Console.WriteLine("Enter Battle");
             BLog bl = new();
             StringBuilder sb = new($"Battle between {player1.Item1.name} and {player2.Item1.name} starting shortly.\n\n");
             for (int i = 0; i < 99; i++)         //A Maximum of 100 Rounds
@@ -37,20 +36,14 @@ namespace monsterTradingCardGame.BattleFunctions
                 sb.Append($"Player2 {player2.Item1.name} drew {c2.Name} ({c2.Damage}) \n");
 
                 Tuple<Card, string> result = CardBattle(c1, c2);
-                if (result.Item1 is null)
+                if (result.Item1 == c1)
                 {
-                    sb.Append(result.Item2 + "\n");
-                }
-                else if (result.Item1 == c1)
-                {
-                    // Console.WriteLine("Player 1 lost " + player1.Item2.Count.ToString());
                     bl.LogMovedCard(c1, player2.Item1);
                     player1.Item2.Remove(c1);
                     player2.Item2.Add(c1);
                 }
                 else
                 {
-                    //Console.WriteLine("Player 2 lost " + player2.Item2.Count.ToString());
                     bl.LogMovedCard(c2, player1.Item1);
                     player2.Item2.Remove(c2);
                     player1.Item2.Add(c2);
@@ -60,7 +53,6 @@ namespace monsterTradingCardGame.BattleFunctions
 
             if (player1.Item2.Count == 0)
             {
-                Console.WriteLine("Winner1");
                 bl.Winner = player2.Item1;
                 bl.Loser = player1.Item1;
                 sb.Append($"Player {player2.Item1.name} has won, because he won all cards from player {player1.Item1.name}.");
@@ -70,7 +62,6 @@ namespace monsterTradingCardGame.BattleFunctions
             }
             else if (player2.Item2.Count == 0)
             {
-                Console.WriteLine("Winner2");
                 bl.Winner = player2.Item1;
                 bl.Loser = player1.Item1;
                 sb.Append($"Player {player1.Item1.name} has won, because he won all cards from player {player2.Item1.name}.");

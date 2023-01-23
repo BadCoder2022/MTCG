@@ -119,10 +119,9 @@ namespace monsterTradingCardGame.OptionalFeature
         {
             List<Card> cards = new List<Card>();
 
-            string cmd = @"(select * from card order by random() limit 1)
-                            union all
-                            select * from card  limit 10;
-                         ";
+            string cmd = @"(SELECT * FROM randomcard ORDER BY random() limit 1)
+                            UNION ALL
+                            SELECT * FROM randomcard  LIMIT 10;";
             using NpgsqlCommand sqlcmd = new NpgsqlCommand(cmd, this.con);
 
             using var reader = sqlcmd.ExecuteReader();

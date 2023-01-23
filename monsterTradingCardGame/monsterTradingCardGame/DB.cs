@@ -313,7 +313,6 @@ namespace monsterTradingCardGame
                     {
                         Guid dbGuid = reader.GetGuid(0);
                         dbGuids.Add(dbGuid);
-                        Console.WriteLine("Following Card already exist: " + dbGuid.ToString());
                     }
                     reader.Close();
                     return dbGuids;
@@ -571,7 +570,6 @@ namespace monsterTradingCardGame
                 {
                     sb2.Append(@"card = @card" + i + " or ");
                     username2 = item.Value.name;
-                    Console.WriteLine("Doesthis even work?");
                 }
                 else
                 {
@@ -622,7 +620,6 @@ namespace monsterTradingCardGame
         public void AddScore(BLog battelog)
         {
             string updatescore;
-            Console.WriteLine(battelog.draw + "  Winner:  " + battelog.Winner.name);
             if (battelog.draw == false)
             {
                 updatescore = @" 
@@ -738,6 +735,14 @@ namespace monsterTradingCardGame
         /// <returns>True if a card was able to be added to the trade-table.</returns>
         public bool AddCard2Trade(Trade trade)
         {
+            //Check if a trade with this ID already exists, return false if it does
+            List<Trade> Trades = this.ListTrades();
+            foreach(Trade t in Trades)
+            {
+                if (t.TradeID == trade.TradeID)
+                    return false;
+            }
+            
             string tradequery = @"INSERT INTO trades
                                 (id, card, wantsMonster, minDamage)
                                 VALUES

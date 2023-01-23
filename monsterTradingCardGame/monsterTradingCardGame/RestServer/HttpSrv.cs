@@ -78,7 +78,6 @@ namespace monsterTradingCardGame.RestServer
 
                 if (!db.CheckToken(request.GetToken()))
                 {
-                    Console.WriteLine(("Test"));
                     Response.SendResponse(tcpClient, HttpStatusCode.BadRequest, "No user with this token has logged in.");
                     return;
                 }
@@ -558,7 +557,7 @@ namespace monsterTradingCardGame.RestServer
                 StringBuilder sb = new("|Trade-ID   \t\t\t\t| Card-ID   \t\t\t\t| Monster Requested   \t| Minimum Damage   \t|Trader   \t\t\n");
                 foreach (Trade t in trades)
                 {
-                    sb.Append($"|{t.TradeID}\t| {t.Cardid} \t| {t.isMonster()}   \t\t| {t.MinDamage}   \t\t\t\t\t|{t.Trader}   \t\r\n");
+                    sb.Append($"|{t.TradeID}\t| {t.Cardid} \t| {t.isMonster()}   \t\t| {t.MinDamage}  \t\t\t|{t.Trader}   \t\r\n");
                 }
                 Response.SendResponse(tcpClient, HttpStatusCode.OK, sb.ToString());
             }
@@ -583,7 +582,8 @@ namespace monsterTradingCardGame.RestServer
             {
                 foreach (Trade t in trades)
                 {
-                    if (t.TradeID.ToString() == request.add_path[2] && t.Trader == user.name)
+                    Console.WriteLine(t.Trader + "\nusername: " + user.name);
+                    if (t.TradeID.ToString() == request.add_path[2] && t.Trader.ToLower().Contains(user.name.ToLower()))
                     {
                         db.DeleteTrade(Guid.Parse(request.add_path[2]));
                         success = true;
